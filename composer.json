@@ -1,0 +1,11 @@
+{
+    "name": "pr812/enrutador",
+    "description": "Servicio web RESTful para la gestión de la tabla articulo_proveedor",
+    "autoload": {
+        "psr-4": {
+            "pr812\\enrutador\\": "enrutador/",
+            "pr812\\modelo\\": "modelo/",
+            "pr812\\orm\\": "orm/"
+        }
+    }
+}
