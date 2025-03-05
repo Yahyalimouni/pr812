@@ -22,7 +22,7 @@ class ORMArticuloProveedor {
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
 
-    public function update($primaryKey, $data): bool {
+    public function update($primaryKey, $data): array {
         try {
             
             $sql = "UPDATE " . $this->table . " ";
@@ -47,7 +47,7 @@ class ORMArticuloProveedor {
             $sql .= $whereQuery;
     
             foreach($this->pk as $fk) {
-                $params[":$fk"] =  $primaryKey[$fk]
+                $params[":$fk"] =  $primaryKey[$fk];
             }
     
             $stmt = $this->pdo->prepare($sql);
@@ -61,9 +61,9 @@ class ORMArticuloProveedor {
                 ];
             }
             else {
-                throw new Exception('No row found with the pk: '. implode(', ', $primaryKey), 5000);
+                throw new \Exception('No row found with the pk: '. implode(', ', $primaryKey), 5000);
             }
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $result = [
                 'success' => false,
                 'code' => '422 Unprocessable Entity',

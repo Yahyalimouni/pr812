@@ -26,7 +26,7 @@ class Modelo12 {
         $data = json_decode($data, true);
 
         if( !$data ) {
-            throw new Exception("Unfound data");
+            throw new \Exception("Unfound data");
         }
 
         $sanitizationFilters = [
@@ -36,13 +36,13 @@ class Modelo12 {
             'dto_compra' => ['filter' => FILTER_SANITIZE_NUMBER_FLOAT, 'flags' => FILTER_FLAG_ALLOW_FRACTION],
             'und_compradas' => FILTER_SANITIZE_NUMBER_INT,
             'und_disponibles' => FILTER_SANITIZE_NUMBER_INT,
-            'fecha' => FILTER_DEFAULT,
+            'fecha_disponible' => FILTER_SANITIZE_SPECIAL_CHARS,
         ];
 
         $sanitizedData = filter_var_array($data, $sanitizationFilters);
         
-        if( !$sanitizationFilters ) {
-            throw new Exception('Invalid data Format');
+        if( !$sanitizedData ) {
+            throw new \Exception('Invalid data Format');
         }
 
         $validationFilters = [
@@ -60,7 +60,7 @@ class Modelo12 {
             ],
             'und_compradas' => FILTER_VALIDATE_INT,
             'und_disponibles' => FILTER_VALIDATE_INT,
-            'fecha' => FILTER_VALIDATE_INT
+            'fecha_disponible' => FILTER_DEFAULT
         ];
 
         $validatedData = filter_var_array($sanitizedData, $validationFilters);
