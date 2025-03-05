@@ -67,7 +67,6 @@ class Enrutador12 {
         }
 
         $classInstance = new $class();
-        $methodInstance = $classInstance->$method();
 
         return call_user_func_array([ $classInstance, $method ], $params);
     }
