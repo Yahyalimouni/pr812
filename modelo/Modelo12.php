@@ -36,7 +36,6 @@ class Modelo12 {
             'dto_compra' => ['filter' => FILTER_SANITIZE_NUMBER_FLOAT, 'flags' => FILTER_FLAG_ALLOW_FRACTION],
             'und_compradas' => FILTER_SANITIZE_NUMBER_INT,
             'und_disponibles' => FILTER_SANITIZE_NUMBER_INT,
-            'fecha' => FILTER_DEFAULT,
         ];
 
         $sanitizedData = filter_var_array($data, $sanitizationFilters);
