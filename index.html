@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js" defer></script>
+    <title>Tiendaol - Articulo Proveedor</title>
+</head>
+<body>
+    <section class="form-container">
+        <h1>Actualizacion de datos en Articulo Proveedor (PATCH)</h1>
+        <form action="">
+            <fieldset>
+                <!-- Referencia Actual -->
+                <div class="data-row">
+                    <input type="text" name="referencia-act" id="referencia-act">
+                    <label for="referencia-act">Referencia Actual</label>
+                </div>
+                
+                <!-- NIF Actual -->
+                <div class="data-row">
+                    <input type="text" name="nif-act" id="nif-act">
+                    <label for="nif-act">NIF Actual</label>
+                </div>
+
+                <!-- Nueva referencia -->
+                <div class="data-row">
+                    <input type="text" name="new-ref" id="new-ref">
+                    <label for="new-ref">Nueva referencia</label>
+                </div>
+
+                <!-- Nuevo NIF -->
+                <div class="data-row">
+                    <input type="text" name="new-nif" id="new-nif">
+                    <label for="new-nif">Nuevo NIF</label>
+                </div>
+
+                <!-- Precio Coste -->
+                <div class="data-row">
+                    <input type="text" name="precio-coste" id="precio-coste">
+                    <label for="precio-coste">Precio Coste</label>
+                </div>
+
+                <!-- DTO Compra -->
+                <div class="data-row">
+                    <input type="text" name="dto-compra" id="dto-compra">
+                    <label for="dto-compra">DTO Compra</label>
+                </div>
+
+                <!-- UND Compradas -->
+                <div class="data-row">
+                    <input type="number" name="und-compradas" id="und-compradas">
+                    <label for="und-compradas">Unidades Compradas</label>
+                </div>
+
+                <!-- UND disponibles -->
+                <div class="data-row">
+                    <input type="number" name="und-disponibles" id="und-disponibles">
+                    <label for="und-disponibles">Unidades disponibles</label>
+                </div>
+
+                <!-- Fecha Disponible -->
+                <div class="data-row">
+                    <input type="date" name="fecha-disponible" id="fecha-disponible">
+                    <label for="fecha-disponible">Fecha Disponible</label>
+                </div>
+            </fieldset>
+            <!-- Boton Submit -->
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+</body>
+</html>

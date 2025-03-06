@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --secondary-color: #20b8cd;
+    --third-color: #202222;
+    --placeholders-color: #8d9191;
+    --inputs-border-color: #3d3f40;
+    --transition-duration: 300ms;
+}
+
+html {
+    font-size: 18px;
+    font-family: 'Helvetica', 'sans-serif';
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #191a1a;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.form-container {
+    padding-block: 5em;
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+form {
+    width: clamp(300px, 600px, 80%);
+    border: 1px solid var(--inputs-border-color);
+    padding: 2em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border: none;
+}
+
+.data-row {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1em;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--inputs-border-color);
+    caret-color: var(--secondary-color);
+    padding: .5em;
+    color: #fff;
+    transition: var(--transition-duration) ease-in-out;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--secondary-color);
+    border-radius: .2em;
+}
+
+input::placeholder {
+    color: var(--placeholders-color);
+}
+
+input:focus + label {
+    color: var(--secondary-color);
+}
+
+label {
+    transition: var(--transition-duration) ease-in-out;
+    color: var(--placeholders-color);
+}
+
+button {
+    padding: .7em;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    background-color: transparent;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: .3em;
+    cursor: pointer;
+    transition: var(--transition-duration) ease-in-out;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
