@@ -29,6 +29,14 @@ body {
     color: #fff;
 }
 
+.error {
+    border-color: red;
+}
+
+.error:focus {
+    border-color: red;
+}
+
 h1 {
     font-size: 2.5em;
 }
@@ -119,7 +127,7 @@ label[for="fecha-disponible"] {
 
 #fecha-disponible {
     display: flex;
-    padding: 1.5em;
+    padding: 1.5em .5em;
     justify-content: space-between;
     gap: .3em;
 }
@@ -137,7 +145,6 @@ label[for="fecha-disponible"] {
     flex: .8;
 }
 
-
 #fecha-disponible div select {
     appearance: none;
     -webkit-appearance: none;
@@ -150,7 +157,7 @@ label[for="fecha-disponible"] {
     color: #d6d6d6;
     cursor: pointer;
     transition: var(--transition-duration) ease-in-out;
-    padding: 1.5em 1em;
+    padding: 1em 1em;
     font-size: 1em;
 }
 
@@ -247,7 +254,6 @@ label {
 .data-row-special .data-row {
     flex: 1;
 }
-
 
 /* Submit button */
 button {

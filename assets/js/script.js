@@ -83,7 +83,6 @@ window.addEventListener("DOMContentLoaded", () => {
             monthSelect.appendChild(option);
             
             if(yearSelect.value) {
-                console.log(yearSelect.value);
                 // Selecting the current month as default
                 option.selected = index === currentMonth;
                 // Deshabilitar los meses pasados

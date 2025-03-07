@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/datavalidation.js"></script>
     <title>Tiendaol - Articulo Proveedor</title>
 </head>
 <body>
@@ -14,38 +15,38 @@
             <fieldset>
                 <!-- Referencia Actual -->
                 <div class="data-row">
-                    <input type="text" name="referencia-act" id="referencia-act" class="uppercase-input" maxlength="8" required>
+                    <input type="text" aria-label="referencia" name="referencia" id="referencia" class="uppercase-input" maxlength="8" required>
                     <label for="referencia-act">referencia actual <span class="asterisc">*</span></label>
                 </div>
                 
                 <!-- NIF Actual -->
                 <div class="data-row">
-                    <input type="text" name="nif-act" id="nif-act" class="uppercase-input" maxlength="9" required> 
+                    <input type="text" name="nif" id="nif" aria-label="nif" class="uppercase-input" maxlength="9" required> 
                     <label for="nif-act">NIF actual <span class="asterisc">*</span></label>
                 </div>
 
                 <!-- Nueva referencia -->
                 <div class="data-row">
-                    <input type="text" name="new-ref" id="new-ref" class="uppercase-input" maxlength="8">
+                    <input type="text" name="new-ref" aria-label="referencia" id="new-ref" class="uppercase-input" maxlength="8">
                     <label for="new-ref">nueva referencia</label>
                 </div>
 
                 <!-- Nuevo NIF -->
                 <div class="data-row">
-                    <input type="text" name="new-nif" id="new-nif" class="uppercase-input" maxlength="9">
+                    <input type="text" name="new-nif" aria-label="nif" id="new-nif" class="uppercase-input" maxlength="9">
                     <label for="new-nif">nuevo NIF</label>
                 </div>
 
                 <div class="data-row-special">
                     <!-- Precio Coste -->
                     <div class="data-row">
-                        <input type="number" name="precio-coste" id="precio-coste" maxlength="6">
+                        <input type="number" aria-label="precio-coste" name="precio-coste" id="precio-coste" maxlength="6">
                         <label for="precio-coste">precio coste</label>
                     </div>
     
                     <!-- DTO Compra -->
                     <div class="data-row">
-                        <input type="number" name="dto-compra" id="dto-compra" min="0" max="90">
+                        <input type="number" aria-label="dto-compra" name="dto-compra" id="dto-compra" min="0" max="90">
                         <label for="dto-compra">dto compra</label>
                     </div>
                 </div>
@@ -53,13 +54,13 @@
                 <div class="data-row-special">
                     <!-- UND Compradas -->
                     <div class="data-row">
-                        <input type="number" name="und-compradas" id="und-compradas" min="0" max="999999">
+                        <input type="number" aria-label="und" name="und-compradas" id="und-compradas" min="0" max="999999">
                         <label for="und-compradas">und compradas</label>
                     </div>
     
                     <!-- UND disponibles -->
                     <div class="data-row">
-                        <input type="number" name="und-disponibles" id="und-disponibles"  min="0" max="999999">
+                        <input type="number" aria-label="und" name="und-disponibles" id="und-disponibles"  min="0" max="999999">
                         <label for="und-disponibles">und disponibles</label>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                 </div>
             </fieldset>
             <!-- Boton Submit -->
-            <button type="submit">Enviar</button>
+            <button type="submit" id="submit">Enviar</button>
         </form>
     </section>
 </body>
