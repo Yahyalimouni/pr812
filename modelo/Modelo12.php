@@ -4,10 +4,6 @@ namespace pr812\modelo;
 use pr812\orm\ORMArticuloProveedor;
 
 class Modelo12 {
-    public function __construct() {
-        echo "Modelo12 instanciado.<br>";
-    }
-
     public function updateArtProv($nif, $referencia): array {
         $validatedData = $this->validateData();
 

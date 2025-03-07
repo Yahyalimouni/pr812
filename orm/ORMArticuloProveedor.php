@@ -61,7 +61,7 @@ class ORMArticuloProveedor {
                 ];
             }
             else {
-                throw new \Exception('No row found with the pk: '. implode(', ', $primaryKey), 5000);
+                throw new \Exception('An error has occured while updating, Can be because of the same request', 5000);
             }
         } catch(\Exception $e) {
             $result = [
@@ -74,38 +74,5 @@ class ORMArticuloProveedor {
 
         return $result;
     }
-
-    // public function getAll(): array {
-    //     $sql = "SELECT * FROM " . self::TABLE;
-
-    //     try {
-    //         $stmt = $this->pdo->prepare($sql);
-    
-    //         $result = [];
-    //         $data = [];
-            
-    //         if( $stmt->execute() ){
-    //             while($row = $stmt->fetch()) {
-    //                 $data[] = $row;
-    //             }
-    
-    //             $result = [
-    //                 'success' => true,
-    //                 'error' => null,
-    //                 'data'=> $data,
-    //                 'code' => '200 Ok'
-    //             ];
-    //         }
-    //     } catch(PDOException $e){
-    //         $result = [
-    //             'success' => false,
-    //             'error' => ['code' => $e->getCode(), 'message' => $e->getMessage()],
-    //             'data'=> null,
-    //             'code' => '400 Bad Request'
-    //         ];
-    //     }
-
-    //     return $result;
-    // }
 }
 ?>

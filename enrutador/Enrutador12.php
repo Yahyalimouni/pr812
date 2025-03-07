@@ -32,24 +32,29 @@ class Enrutador12 {
                 header($_SERVER['SERVER_PROTOCOL'] . " " . $result['code']);
                 header("Content-Type: application/json");
 
-                echo json_encode($result);
+                echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             }
             else {
                 $this->handleError($result);
             }
         }
         catch(Exception $e) {
-            $this->handleError($e);
+            $result = [
+                'success' => false,
+                'data' => null,
+                'code' => "400 Bad Request",
+                'error' => ['code' => $e->getCode(), 'message' => $e->getMessage()]
+            ];
+
+            $this->handleError($result);
         }
     }
 
-    protected function handleError($error) {
-        $errorCodeMessage = $error instanceof Exception ? $error->getCode() . " " . $error->getMessage() : $error['code'];
-
-        header($_SERVER['SERVER_PROTOCOL'] . " " . $errorCodeMessage);
+    protected function handleError($result) {
+        header($_SERVER['SERVER_PROTOCOL'] . " " . $result['code']);
         header("Content-Type: application/json");
 
-        json_encode($error, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     protected function executeRuta(Ruta $ruta, string $path): array {
@@ -95,8 +100,10 @@ class Enrutador12 {
         $verb = filter_var($_SERVER['REQUEST_METHOD'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         $validPostRequest = true;
+
         if ($verb == 'POST') {
-            if(isset($_POST['_method']) && htmlspecialchars($_POST['_method']) === "PATCH") {
+            $data = json_decode(file_get_contents("php://input"), true);
+            if(isset($data['_method']) && htmlspecialchars($data['_method']) === "PATCH") {
                 $verb = "PATCH";
             }
             else $validPostRequest = false;
