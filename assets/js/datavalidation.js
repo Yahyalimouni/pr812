@@ -138,7 +138,7 @@ window.addEventListener("DOMContentLoaded", () => {
         
         console.log(JSON.stringify(dataWithoutParms));
 
-        fetch(`/index.php/${nif}/${referencia}`, {
+        fetch(`/articulo_proveedor/${nif}/${referencia}`, {
             headers: {
                 'Content-Type': "application/json"
             },
