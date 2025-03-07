@@ -70,7 +70,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    let precioCosteOk = true;
     const validatePrecioCoste = (element) => {
         const precioValue = parseInt(element.value.trim());
         const isInvalid = !dataRegExp.precioUnds.test(precioValue) || precioValue <= 0;
@@ -117,6 +116,20 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    const handleOutput = (data, error = false) => {
+        const outputField = document.getElementById("response");
+
+        if(error) {
+            outputField.classList.remove("good-resp");
+            outputField.textContent = "Ha habido algun problema en la actualizacion: " + data;
+            outputField.classList.add("error-resp");
+        } else {
+            outputField.classList.remove("error-resp");
+            outputField.textContent = "Se ha actualizado la fila con exito! ";
+            outputField.classList.add("good-resp");
+        }
+    }
+
     const sendData = (data) => {
         const referencia = data.referenciaURL;
         const nif = data.nifURL;
@@ -147,13 +160,12 @@ window.addEventListener("DOMContentLoaded", () => {
         })
         .then((res) => {
             if (res.ok) {
-                console.log(res.status); 
-                return;
+                return res.status;
             }
             throw new Error('Network response was not ok.');
         })
-        .then(data => console.log(data))
-        .catch(error => console.error('There was a problem with the fetch operation:', error));
+        .then(data => handleOutput(data))
+        .catch(error => handleOutput(error, true));
     }
 
     const handleSubmit = () => {
