@@ -55,7 +55,7 @@ class ORMArticuloProveedor {
             if($stmt->execute($params) && $stmt->rowCount() == 1) {
                 $result = [
                     'success' => true,
-                    'code' => '204 No Content',
+                    'code' => '200 Ok',
                     'data' => null,
                     'error' => null
                 ];

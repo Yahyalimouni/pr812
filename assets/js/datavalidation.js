@@ -80,8 +80,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let dtoCompraOk = true;
     const validateDto = (element) => {
-        const dtoValue = parseInt(element.value.trim());
-        const isInvalid = !dataRegExp.dto.test(dtoValue) || dtoValue < 0 || dtoValue > 90;
+        const dtoValue = parseFloat(element.value.trim());
+        const isInvalid = !dataRegExp.dto.test(dtoValue) || dtoValue < 0 || dtoValue > 0.9;
 
         isInvalid ? (handleError(element), dtoCompraOk = false) : (clearError(element), dtoCompraOk = true);
     }
@@ -115,6 +115,45 @@ window.addEventListener("DOMContentLoaded", () => {
                 validateUnd(element);
                 break;
         }
+    }
+
+    const sendData = (data) => {
+        const referencia = data.referenciaURL;
+        const nif = data.nifURL;
+        
+        if(!referencia || !nif){
+            alert("No ref and nif found");
+            return;
+        }
+        
+        const dataWithoutParms = {};
+
+        for(key in data) {
+            if(!['referenciaURL', 'nifURL'].includes(key)){
+                dataWithoutParms[key] = data[key]
+            }
+        }
+
+        dataWithoutParms['_method'] = 'PATCH';
+        
+        console.log(JSON.stringify(dataWithoutParms));
+
+        fetch(`/index.php/${nif}/${referencia}`, {
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(dataWithoutParms),
+            method: "POST"
+        })
+        .then((res) => {
+            if (res.ok) {
+                console.log(res.status); 
+                return;
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('There was a problem with the fetch operation:', error));
     }
 
     const handleSubmit = () => {
