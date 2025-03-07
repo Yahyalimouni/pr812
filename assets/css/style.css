@@ -6,10 +6,12 @@
 
 :root {
     --secondary-color: #20b8cd;
+    --forth-color: #165d66;
     --third-color: #202222;
     --placeholders-color: #8d9191;
     --inputs-border-color: #3d3f40;
     --transition-duration: 300ms;
+    --inputs-border-radius: .5em;
 }
 
 html {
@@ -26,6 +28,14 @@ body {
     color: #fff;
 }
 
+h1 {
+    font-size: 2.5em;
+}
+
+span:first-child {
+    color: var(--secondary-color);
+}
+
 .form-container {
     padding-block: 5em;
     margin: 0 auto;
@@ -38,14 +48,50 @@ body {
 }
 
 form {
+    position: relative;
+    --form-border-radius: 1em;
     width: clamp(300px, 600px, 80%);
     border: 1px solid var(--inputs-border-color);
     padding: 2em;
-    border-radius: 1em;
+    border-radius: var(--form-border-radius);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2em;
+    background-color: var(--third-color);
+}
+
+form::after,
+form::before {
+    content: '';
+    --difference-width: 5px;
+    position: absolute;
+    width: calc(100% + var(--difference-width));
+    height: calc(100% + var(--difference-width));
+    background: radial-gradient(#fff 40%, var(--secondary-color) 50%, var(--forth-color) 80%);
+    border-radius: var(--form-border-radius);
+    background-position: center;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    animation: border-animation 5s infinite linear;
+}
+
+form::before {
+    filter: blur(5px);
+}
+
+@keyframes border-animation {
+    0% {
+        background-size: 90% 90%;
+    }
+    50% {
+        background-size: 0% 0%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
 }
 
 fieldset {
@@ -56,19 +102,104 @@ fieldset {
 }
 
 .data-row {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1em;
+    position: relative;
 }
 
+/* Date selects styles */
+.data-row:has(#fecha-disponible) {
+    border-radius: var(--inputs-border-radius);
+    border: 1px solid var(--inputs-border-color);
+}
+
+label[for="fecha-disponible"] {
+    color: var(--placeholders-color) !important;
+    font-size: 1em !important;
+}
+
+#fecha-disponible {
+    display: flex;
+    padding: 1.5em;
+    justify-content: space-between;
+    gap: .3em;
+}
+
+#fecha-disponible div {
+    position: relative;
+    flex: 1.25;
+}
+
+#fecha-disponible div:nth-child(2) {
+    flex: 1.5;
+}
+
+#fecha-disponible div:last-child {
+    flex: .75;
+}
+
+
+#fecha-disponible div select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    min-height: 4em;
+    background-color: transparent;
+    border: 1px solid var(--inputs-border-color);
+    border-radius: var(--inputs-border-radius);
+    color: #d6d6d6;
+    cursor: pointer;
+    transition: var(--transition-duration) ease-in-out;
+    padding: 1.5em 1em;
+    font-size: 1em;
+}
+
+select option {
+    text-align: start;
+}
+
+#fecha-disponible div svg {
+    position: absolute;
+    right: .2em;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: var(--transition-duration) ease-in-out;
+}
+
+select:focus {
+    outline: none;
+    border: 1px solid var(--secondary-color) !important;
+    color: #165d66 !important;
+}
+
+select:focus ~ svg {
+    fill: var(--secondary-color);
+}
+
+svg {
+    cursor: pointer;
+    pointer-events: none;
+}
+
+#fecha-disponible div label {
+    top: 1em;
+    font-size: .8em;
+}
+
+select:focus + label{
+    color: var(--secondary-color);
+}
+
+/* General Inputs */
 input {
+    width: 100%;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--inputs-border-color);
+    border: 1px solid var(--inputs-border-color);
     caret-color: var(--secondary-color);
-    padding: .5em;
+    padding: 1.4em;
     color: #fff;
     transition: var(--transition-duration) ease-in-out;
+    border-radius: .5em;
 }
 
 input:focus {
@@ -81,15 +212,29 @@ input::placeholder {
     color: var(--placeholders-color);
 }
 
-input:focus + label {
+input:focus + label,
+label[for="fecha-disponible"],
+.stay-up {
     color: var(--secondary-color);
+    top: 0;
+    background-color: var(--third-color);
+    padding-inline: .3em;
+    border-radius: 1em;
+    font-size: .8em;
 }
 
 label {
     transition: var(--transition-duration) ease-in-out;
     color: var(--placeholders-color);
+    position: absolute;
+    left: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
+
+/* Submit button */
 button {
     padding: .7em;
     color: var(--secondary-color);

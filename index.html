@@ -9,61 +9,83 @@
 </head>
 <body>
     <section class="form-container">
-        <h1>Actualizacion de datos en Articulo Proveedor (PATCH)</h1>
+        <h1>Articulo Proveedor <span>-</span> PATCH</h1>
         <form action="">
             <fieldset>
                 <!-- Referencia Actual -->
                 <div class="data-row">
                     <input type="text" name="referencia-act" id="referencia-act">
-                    <label for="referencia-act">Referencia Actual</label>
+                    <label for="referencia-act">referencia actual</label>
                 </div>
                 
                 <!-- NIF Actual -->
                 <div class="data-row">
                     <input type="text" name="nif-act" id="nif-act">
-                    <label for="nif-act">NIF Actual</label>
+                    <label for="nif-act">NIF actual</label>
                 </div>
 
                 <!-- Nueva referencia -->
                 <div class="data-row">
                     <input type="text" name="new-ref" id="new-ref">
-                    <label for="new-ref">Nueva referencia</label>
+                    <label for="new-ref">nueva referencia</label>
                 </div>
 
                 <!-- Nuevo NIF -->
                 <div class="data-row">
                     <input type="text" name="new-nif" id="new-nif">
-                    <label for="new-nif">Nuevo NIF</label>
+                    <label for="new-nif">nuevo NIF</label>
                 </div>
 
                 <!-- Precio Coste -->
                 <div class="data-row">
                     <input type="text" name="precio-coste" id="precio-coste">
-                    <label for="precio-coste">Precio Coste</label>
+                    <label for="precio-coste">precio coste</label>
                 </div>
 
                 <!-- DTO Compra -->
                 <div class="data-row">
                     <input type="text" name="dto-compra" id="dto-compra">
-                    <label for="dto-compra">DTO Compra</label>
+                    <label for="dto-compra">dto compra</label>
                 </div>
 
                 <!-- UND Compradas -->
                 <div class="data-row">
                     <input type="number" name="und-compradas" id="und-compradas">
-                    <label for="und-compradas">Unidades Compradas</label>
+                    <label for="und-compradas">unidades compradas</label>
                 </div>
 
                 <!-- UND disponibles -->
                 <div class="data-row">
                     <input type="number" name="und-disponibles" id="und-disponibles">
-                    <label for="und-disponibles">Unidades disponibles</label>
+                    <label for="und-disponibles">unidades disponibles</label>
                 </div>
 
                 <!-- Fecha Disponible -->
-                <div class="data-row">
-                    <input type="date" name="fecha-disponible" id="fecha-disponible">
-                    <label for="fecha-disponible">Fecha Disponible</label>
+                <div class="data-row special">
+                    <!-- Fecha Completa -->
+                    <div id="fecha-disponible">
+                        <!-- Ano -->
+                        <div class="year">
+                            <select id="year" name="year"></select>
+                            <label for="year">año</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </div>
+
+                        <!-- Mes -->
+                        <div class="month">
+                            <select name="month" id="month"></select>
+                            <label for="month">mes</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </div>
+
+                        <!-- Day -->
+                        <div class="day">
+                            <select name="day" id="day"></select>
+                            <label for="day">día</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </div>
+                    </div>
+                    <label for="fecha-disponible">fecha disponible</label>
                 </div>
             </fieldset>
             <!-- Boton Submit -->
