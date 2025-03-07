@@ -6,8 +6,9 @@
 
 :root {
     --secondary-color: #20b8cd;
-    --forth-color: #165d66;
     --third-color: #202222;
+    --forth-color: #165d66;
+    --fifth-color: #1b7783;
     --placeholders-color: #8d9191;
     --inputs-border-color: #3d3f40;
     --transition-duration: 300ms;
@@ -125,7 +126,7 @@ label[for="fecha-disponible"] {
 
 #fecha-disponible div {
     position: relative;
-    flex: 1.25;
+    flex: 1.2;
 }
 
 #fecha-disponible div:nth-child(2) {
@@ -133,7 +134,7 @@ label[for="fecha-disponible"] {
 }
 
 #fecha-disponible div:last-child {
-    flex: .75;
+    flex: .8;
 }
 
 
@@ -231,6 +232,20 @@ label {
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+}
+
+/* Info */
+.info p {
+    color: var(--forth-color);
+}
+
+.data-row-special {
+    display: flex;
+    gap: .5em;
+}
+
+.data-row-special .data-row {
+    flex: 1;
 }
 
 

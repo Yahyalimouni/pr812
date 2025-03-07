@@ -1,15 +1,17 @@
 window.addEventListener("DOMContentLoaded", () => {
-    /* ---------- DOM Elements ----------------- */
+    /* ------------- DOM Elements ----------------- */
     const inputs = document.getElementsByTagName("input");
     const yearSelect = document.getElementById("year");
     const monthSelect = document.getElementById("month");
     const daySelect = document.getElementById("day");
+    const submit = document.getElementById('submit');
+    const uppercaseInputs = document.getElementsByClassName('uppercase-input');
 
-    /* ------------- GLOBAL VARS -------------------- */
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'May', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    /* ------------- GLOBAL VARS ---------------- */
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const currentDateObj = new Date();
 
-    /*  ------------   FUNCTIONS  ------------------  */
+    /*  ------------  FUNCTIONS  ------------------  */
 
     // Styling Functions
     const updateLabelsStyles = () => {
@@ -44,63 +46,85 @@ window.addEventListener("DOMContentLoaded", () => {
         const currentYear = currentDateObj.getFullYear();
         const maxYear = currentYear + 5;
 
+        yearSelect.textContent = '';
+        yearSelect.appendChild(createOption('', '', true));
+        
         for(let year = currentYear; year <= maxYear; year++) {
             yearSelect.appendChild(createOption(year, year));
         }
     }
-
+    
     // Function to create an option
-    const createOption = (value, text) => {
+    const createOption = (value='', text='', defaultOp = false) => {
+        if(typeof defaultOp !== 'boolean') return;
+        
         const option = document.createElement('option');
+        
+        if(defaultOp && !text) {
+            option.selected = true;
+        }
+        
         option.value = value;
         option.text = text;
+        
         return option;
     }
-
+    
     // Set the months and desables the past months depending on the selected year
     const setUpMonths = () => {
         const currentMonth = currentDateObj.getMonth();
-
+        
         monthSelect.textContent = '';
 
+        monthSelect.appendChild(createOption('', '', true));
+        
         months.forEach((month, index) => {
             const option = createOption(index, month)
             monthSelect.appendChild(option);
-
-            // Selecting the current month as default
-            option.selected = index === currentMonth;
-
-            // Deshabilitar los meses pasados
-            option.disabled = parseInt(yearSelect.value) === currentDateObj.getFullYear() && index < currentMonth;
+            
+            if(yearSelect.value) {
+                console.log(yearSelect.value);
+                // Selecting the current month as default
+                option.selected = index === currentMonth;
+                // Deshabilitar los meses pasados
+                option.disabled = parseInt(yearSelect.value) === currentDateObj.getFullYear() && index < currentMonth;
+            }
         })
     }
-
+    
     // Setting up days
     const setUpDays = () => {
         daySelect.textContent = '';
+        daySelect.appendChild(createOption('', '', true));
+        
+        // Get the selected year and month
+        const selectedYear = !isNaN(yearSelect.value) ? parseInt(yearSelect.value) : "";
+        const selectedMonth = !isNaN(monthSelect.value) ? parseInt(monthSelect.value) : "";
 
-        const selectedYear = parseInt(yearSelect.value);
-        const selectedMonth = parseInt(monthSelect.value);
-
+        // Get current date parts
         const currentDay = currentDateObj.getDate();
         const currentYear = currentDateObj.getFullYear();
         const currentMonth = currentDateObj.getMonth();
 
+        // Get the days number of the current month
         const currentMonthDays = getMonthDays(selectedYear, selectedMonth + 1);
 
         for( let day = 1; day <= currentMonthDays; day++ ) {
             const dayOption = createOption(day, day);
             daySelect.appendChild(dayOption);
 
-            // Select current day by default
-            dayOption.selected = day === currentDay;
-
-            // Disable the previous days in the same year and month
-            dayOption.disabled =  selectedYear == currentYear && selectedMonth == currentMonth && day < currentDay;
+            if(selectedMonth && selectedYear) {
+                // Select current day by default
+                dayOption.selected = day === currentDay;
+    
+                // Disable the previous days in the same year and month
+                dayOption.disabled =  selectedYear === currentYear && selectedMonth === currentMonth && day < currentDay;
+            }
         }
     }
 
     const getMonthDays = (year, month) => {
+        if(isNaN(year) || isNaN(month)) return;
         return new Date(year, month, 0).getDate()
     }
 
@@ -108,6 +132,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
     /* ------------------ Event Listeners --------------------- */
     document.forms[0].addEventListener("blur", updateLabelsStyles, true);
-    monthSelect.addEventListener("focus", setUpMonths);
-    daySelect.addEventListener("focus", setUpDays);
+    document.forms[0].addEventListener("submit", (e) => e.preventDefault());
+    yearSelect.addEventListener("change", setUpMonths);
+    yearSelect.addEventListener("change", setUpDays);
+    monthSelect.addEventListener("change", setUpDays);
+
+    Array.from(uppercaseInputs).forEach(input => input.addEventListener("input", (e) => {
+        const value = e.target.value;
+        if (e.inputType !== 'deleteContentBackward' && e.inputType !== 'deleteContentForward') {
+            e.target.value = /[a-zA-Z]/.test(value) ? value.toUpperCase() : value;
+        }
+    }));
 })

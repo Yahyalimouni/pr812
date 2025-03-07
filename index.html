@@ -14,50 +14,54 @@
             <fieldset>
                 <!-- Referencia Actual -->
                 <div class="data-row">
-                    <input type="text" name="referencia-act" id="referencia-act">
-                    <label for="referencia-act">referencia actual</label>
+                    <input type="text" name="referencia-act" id="referencia-act" class="uppercase-input" maxlength="8" required>
+                    <label for="referencia-act">referencia actual <span class="asterisc">*</span></label>
                 </div>
                 
                 <!-- NIF Actual -->
                 <div class="data-row">
-                    <input type="text" name="nif-act" id="nif-act">
-                    <label for="nif-act">NIF actual</label>
+                    <input type="text" name="nif-act" id="nif-act" class="uppercase-input" maxlength="9" required> 
+                    <label for="nif-act">NIF actual <span class="asterisc">*</span></label>
                 </div>
 
                 <!-- Nueva referencia -->
                 <div class="data-row">
-                    <input type="text" name="new-ref" id="new-ref">
+                    <input type="text" name="new-ref" id="new-ref" class="uppercase-input" maxlength="8">
                     <label for="new-ref">nueva referencia</label>
                 </div>
 
                 <!-- Nuevo NIF -->
                 <div class="data-row">
-                    <input type="text" name="new-nif" id="new-nif">
+                    <input type="text" name="new-nif" id="new-nif" class="uppercase-input" maxlength="9">
                     <label for="new-nif">nuevo NIF</label>
                 </div>
 
-                <!-- Precio Coste -->
-                <div class="data-row">
-                    <input type="text" name="precio-coste" id="precio-coste">
-                    <label for="precio-coste">precio coste</label>
+                <div class="data-row-special">
+                    <!-- Precio Coste -->
+                    <div class="data-row">
+                        <input type="number" name="precio-coste" id="precio-coste" maxlength="6">
+                        <label for="precio-coste">precio coste</label>
+                    </div>
+    
+                    <!-- DTO Compra -->
+                    <div class="data-row">
+                        <input type="number" name="dto-compra" id="dto-compra" min="0" max="90">
+                        <label for="dto-compra">dto compra</label>
+                    </div>
                 </div>
 
-                <!-- DTO Compra -->
-                <div class="data-row">
-                    <input type="text" name="dto-compra" id="dto-compra">
-                    <label for="dto-compra">dto compra</label>
-                </div>
-
-                <!-- UND Compradas -->
-                <div class="data-row">
-                    <input type="number" name="und-compradas" id="und-compradas">
-                    <label for="und-compradas">unidades compradas</label>
-                </div>
-
-                <!-- UND disponibles -->
-                <div class="data-row">
-                    <input type="number" name="und-disponibles" id="und-disponibles">
-                    <label for="und-disponibles">unidades disponibles</label>
+                <div class="data-row-special">
+                    <!-- UND Compradas -->
+                    <div class="data-row">
+                        <input type="number" name="und-compradas" id="und-compradas" min="0" max="999999">
+                        <label for="und-compradas">und compradas</label>
+                    </div>
+    
+                    <!-- UND disponibles -->
+                    <div class="data-row">
+                        <input type="number" name="und-disponibles" id="und-disponibles"  min="0" max="999999">
+                        <label for="und-disponibles">und disponibles</label>
+                    </div>
                 </div>
 
                 <!-- Fecha Disponible -->
@@ -86,6 +90,10 @@
                         </div>
                     </div>
                     <label for="fecha-disponible">fecha disponible</label>
+                </div>
+
+                <div class="info">
+                    <p>Los campos con el (*) son obligatorios</p>
                 </div>
             </fieldset>
             <!-- Boton Submit -->
