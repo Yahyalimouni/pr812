@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         const year = parseInt(fecha.year.value);
-        let month = parseInt(fecha.month.value);
+        let month = parseInt(fecha.month.value) + 1;
         let day = parseInt(fecha.day.value);
 
         if(year && month && day){
