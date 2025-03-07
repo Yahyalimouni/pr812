@@ -94,7 +94,15 @@ class Enrutador12 {
     protected function getVerb(): string {
         $verb = filter_var($_SERVER['REQUEST_METHOD'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!in_array($verb, self::AVAILABLE_VERBS)) {
+        $validPostRequest = true;
+        if ($verb == 'POST') {
+            if(isset($_POST['_method']) && htmlspecialchars($_POST['_method']) === "PATCH") {
+                $verb = "PATCH";
+            }
+            else $validPostRequest = false;
+        } 
+        
+        if (!in_array($verb, self::AVAILABLE_VERBS) || !$validPostRequest) {
             throw new Exception("Bad Request", 400);
         }
 
